@@ -1,5 +1,5 @@
 
-package com.example.app.practice.User;
+package com.example.app.practice.security;
 
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,7 +27,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(customizer -> customizer.disable());
         http.authorizeHttpRequests(request -> request
-            .requestMatchers("/api/register", "/api/login").permitAll()  // Allow unauthenticated access to the registration endpoint
+            .requestMatchers("/api/register", "/api/login","/pay/payment/createOrder").permitAll()  // Allow unauthenticated access to the registration endpoint
             .anyRequest().authenticated()
         );
         http.httpBasic(withDefaults());
